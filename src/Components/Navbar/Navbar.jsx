@@ -54,6 +54,9 @@ const Navbar = () => {
       <NavLink className="nav-link " to="/createGroup">
         Create Group
       </NavLink>
+      <NavLink className="nav-link " to="/myJoinedEvents">
+        Joined Events
+      </NavLink>
     </>
   );
 

@@ -90,7 +90,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: `/joinedEvent/:email`,
+        path: `/myJoinedEvents`,
         element: (
           <PrivateRoute>
             <ShowMyJoinedGroups></ShowMyJoinedGroups>
