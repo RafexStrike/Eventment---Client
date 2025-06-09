@@ -11,6 +11,7 @@ import MyGroups from "../Components/Group/MyGroups";
 import MyGroupUpdate from "../Components/Group/MyGroupUpdate";
 import { Suspense } from "react";
 import ErrorPage from "../Pages/ErrorPage";
+import ShowMyJoinedGroups from "../Components/GroupFunctionalities/showMyJoinedGroups";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
         path: "/groups/get/:groupID",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/events/get/${params.groupID}`),
-        element: <PrivateRoute><GroupDetails></GroupDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <GroupDetails></GroupDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myGroups/get",
@@ -81,6 +86,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyGroupUpdate />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: `/joinedEvent/:email`,
+        element: (
+          <PrivateRoute>
+            <ShowMyJoinedGroups></ShowMyJoinedGroups>
           </PrivateRoute>
         ),
       },
