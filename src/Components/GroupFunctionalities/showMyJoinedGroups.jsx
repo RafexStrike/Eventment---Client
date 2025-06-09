@@ -31,7 +31,7 @@ const ShowMyJoinedGroups = () => {
               <th></th>
               <th>Name</th>
               <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Event Date</th>
               <th></th>
             </tr>
           </thead>
@@ -67,7 +67,7 @@ const ShowMyJoinedGroups = () => {
                     {event.eventType}
                   </span>
                 </td>
-                <td>Purple</td>
+                <td>{event.startDate}</td>
                 <th>
                   <Link
                     to={`/groups/get/${event.groupID}`}
