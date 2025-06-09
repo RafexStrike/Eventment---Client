@@ -1,7 +1,8 @@
 import React from "react";
 import { useLoaderData } from "react-router";
-import Lottie from "lottie-react";
-import loveIcon from "../../assets/Lottie-React-Love-Icon.json";
+import JoinGroupButton from "../GroupFunctionalities/JoinGroupButton";
+// import Lottie from "lottie-react";
+// import loveIcon from "../../assets/Lottie-React-Love-Icon.json";
 
 const GroupDetails = () => {
   const groupDetails = useLoaderData();
@@ -144,14 +145,15 @@ const GroupDetails = () => {
               {/* Action Button */}
               <div className="card-actions justify-center lg:justify-end">
                 {isGroupActive ? (
-                  <button className="btn btn-primary btn-lg px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold text-white bg-gradient-to-r from-primary to-primary-focus border-0">
-                    Join Group<Lottie
-                      animationData={loveIcon}
-                      loop={true}
-                      style={{ height: 32, width: 32 }}
-                    />
-                    
-                  </button>
+                  // <button className="btn btn-primary btn-lg px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold text-white bg-gradient-to-r from-primary to-primary-focus border-0">
+                  //   Join Group<Lottie
+                  //     animationData={loveIcon}
+                  //     loop={true}
+                  //     style={{ height: 32, width: 32 }}
+                  //   />
+
+                  // </button>
+                  <JoinGroupButton groupDetails={groupDetails}></JoinGroupButton>
                 ) : (
                   <div className="btn btn-disabled btn-lg px-8 py-3 rounded-full shadow-lg font-semibold">
                     Group No Longer Active
