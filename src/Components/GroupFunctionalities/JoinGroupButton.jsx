@@ -10,11 +10,11 @@ const JoinGroupButton = ({ groupDetails }) => {
   const { email } = user;
   // const { email } = groupDetails;
   const { _id, ...groupDetailsWithOutId } = groupDetails;
-  const groupID = groupDetails._id
+  const groupID = groupDetails._id;
   const dataToSend = {
     ...groupDetailsWithOutId,
     email,
-    groupID
+    groupID,
   };
   const handleJoinGroupButton = () => {
     console.log(email);
@@ -25,22 +25,37 @@ const JoinGroupButton = ({ groupDetails }) => {
       },
       body: JSON.stringify(dataToSend),
     })
-      .then((response) => {
-        if (!response.ok) {
-          // throw new Error(`HTTP error! Status: ${response.status}`);
+      .then(async (res) => {
+        if (res.status === 409) {
           Swal.fire({
             icon: "error",
-            title: "Sorry",
-            text: "You have already joined the event!",
+            title: "Already Joined",
+            text: "You have already joined this event!",
           });
+          return;
         }
-        return response.json();
-      })
-      .then((responseData) => {
+        if (!res.ok) {
+          throw new Error(`Unexpected error: ${res.status}`);
+        }
+
+        const responseData = await res.json();
+
+        // Success message
+        Swal.fire({
+          icon: "success",
+          title: "Joined!",
+          text: "You have successfully joined the event.",
+        });
+
         console.log("Success:", responseData);
       })
       .catch((error) => {
         console.error("Error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       });
   };
   return (
