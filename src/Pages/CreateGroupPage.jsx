@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import groupIcon from "../assets/Lottie-Animation.json";
+// the next two lines are for date picker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateGroupPage = () => {
   const { user } = useContext(AuthContext);
@@ -15,7 +18,7 @@ const CreateGroupPage = () => {
     setSelectedHobby(hobby);
     setIsTheDropDownOpen(!isTheDropDownOpen);
   };
-  const [startingDate, setStartingDate] = useState("");
+  const [startingDate, setStartingDate] = useState(null);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -24,7 +27,7 @@ const CreateGroupPage = () => {
     const description = event.target.description.value;
     const meetingLocation = event.target.meetingLocation.value;
     const maxMembers = event.target.maxMembers.value;
-    const startDate = startingDate;
+    const startDate = startingDate.toISOString().split("T")[0];
     const imageUrl = event.target.imageUrl.value;
 
     const createdGroupInfoObject = {
@@ -187,17 +190,19 @@ const CreateGroupPage = () => {
             </fieldset>
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Start Date</legend>
-              <input
+              <DatePicker
+                placeholderText="Select a start date"
                 name="startDate"
                 type="date"
                 className="input w-full"
-                placeholder="Enter Starting Date"
-                value={startingDate}
-                onChange={(event) => {
-                  const date = event.target.value;
+                dateFormat="yyyy-MM-dd"
+                selected={startingDate}
+                onChange={(date) => {
                   setStartingDate(date);
-                  console.log(startingDate);
+                  console.log(date);
                 }}
+                required
+                minDate={new Date()}
               />
             </fieldset>
 
@@ -232,7 +237,7 @@ const CreateGroupPage = () => {
               placeholder="Upload your photo somewhere and paste the URL here"
             />
           </fieldset>
-          
+
           <div>
             <button className="mt-4 btn w-full">
               Create Group

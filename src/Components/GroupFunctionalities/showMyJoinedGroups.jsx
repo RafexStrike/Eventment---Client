@@ -22,7 +22,7 @@ const ShowMyJoinedGroups = () => {
       console.error("Fetch error:", error);
     });
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto mt-10 mb-24  rounded-xl">
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
