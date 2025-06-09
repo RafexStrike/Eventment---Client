@@ -16,7 +16,7 @@ const iAmGonnaSendYouTo = useNavigate()
     setSelectedHobby(hobby);
     setIsTheDropDownOpen(!isTheDropDownOpen);
   };
-  const [startingDate, setStartingDate] = useState("");
+  const [startingDate, setStartingDate] = useState(null);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const iAmGonnaSendYouTo = useNavigate()
     const description = event.target.description.value;
     const meetingLocation = event.target.meetingLocation.value;
     const maxMembers = event.target.maxMembers.value;
-    const startDate = startingDate;
+    const startDate = startingDate.toISOString().split("T")[0];
     const imageUrl = event.target.imageUrl.value;
 
     const updatedGroupInfoObject = {
@@ -187,17 +187,19 @@ const iAmGonnaSendYouTo = useNavigate()
             </fieldset>
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Start Date</legend>
-              <input
+              <DatePicker
+                placeholderText="Select a start date"
                 name="startDate"
                 type="date"
                 className="input w-full"
-                placeholder="Enter Starting Date"
-                value={startingDate}
-                onChange={(event) => {
-                  const date = event.target.value;
+                dateFormat="yyyy-MM-dd"
+                selected={startingDate}
+                onChange={(date) => {
                   setStartingDate(date);
-                  console.log(startingDate);
+                  console.log(date);
                 }}
+                required
+                minDate={new Date()}
               />
             </fieldset>
 
