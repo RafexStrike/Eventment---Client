@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/Authentication/AuthContext";
+// the next two lines are for date picker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const MyGroupUpdate = () => {
   const groupData = useLoaderData();

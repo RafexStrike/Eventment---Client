@@ -22,6 +22,25 @@ const CreateGroupPage = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
+    // Check if hobby category is selected
+    if (
+      !selectedHobby ||
+      !eventTitle ||
+      !eventType ||
+      !meetingLocation ||
+      !startDate ||
+      !imageUrl ||
+      !maxMembers
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "A required field is missing",
+        text: "Please look out for the required fields which are marked in red asterisk!",
+      });
+      return;
+    }
+
     const eventTitle = event.target.eventTitle.value;
     const eventType = selectedHobby;
     const description = event.target.description.value;
@@ -29,6 +48,7 @@ const CreateGroupPage = () => {
     const maxMembers = event.target.maxMembers.value;
     const startDate = startingDate.toISOString().split("T")[0];
     const imageUrl = event.target.imageUrl.value;
+    const isActive = true;
 
     const createdGroupInfoObject = {
       eventTitle,
@@ -40,6 +60,7 @@ const CreateGroupPage = () => {
       imageUrl,
       displayName,
       email,
+      isActive,
     };
 
     fetch("http://localhost:3000/events/post", {
@@ -86,16 +107,19 @@ const CreateGroupPage = () => {
         <form onSubmit={handleFormSubmit} className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Event Name</legend>
+              <legend className="fieldset-legend">Event Name<span className="text-red-500">*</span></legend>
               <input
                 name="eventTitle"
                 type="text"
                 className="input w-full"
                 placeholder="What should your group be called"
+                required
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Event Type</legend>
+              <legend className="fieldset-legend">
+                Event Type<span className="text-red-500">*</span>
+              </legend>
 
               <div className="dropdown  ">
                 <div
@@ -162,7 +186,10 @@ const CreateGroupPage = () => {
               </div>
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Description</legend>
+              <legend className="fieldset-legend">
+                Description
+                <span className="font-extralight text-sm">(optional)</span>
+              </legend>
               <input
                 name="description"
                 type="text"
@@ -171,25 +198,27 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Meeting Location</legend>
+              <legend className="fieldset-legend">Meeting Location<span className="text-red-500">*</span></legend>
               <input
                 name="meetingLocation"
                 type="text"
                 className="input w-full"
                 placeholder="Where do you guys wanna meet up"
+                required
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Max Members</legend>
+              <legend className="fieldset-legend">Max Members<span className="text-red-500">*</span></legend>
               <input
                 name="maxMembers"
-                type="text"
+                type="number"
                 className="input w-full"
                 placeholder="Maximum number of people you want to allow"
+                required
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Start Date</legend>
+              <legend className="fieldset-legend">Start Date<span className="text-red-500">*</span></legend>
               <DatePicker
                 placeholderText="Select a start date"
                 name="startDate"
@@ -217,7 +246,7 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset mt-8">
-              <legend className="fieldset-legend">User Email</legend>
+              <legend className="fieldset-legend">User Email<span className="text-red-500">*</span></legend>
               <input
                 name="userEmail"
                 type="text"
@@ -232,7 +261,7 @@ const CreateGroupPage = () => {
             <legend className="fieldset-legend">Photo URL</legend>
             <input
               name="imageUrl"
-              type="text"
+              type="url"
               className="input w-full "
               placeholder="Upload your photo somewhere and paste the URL here"
             />

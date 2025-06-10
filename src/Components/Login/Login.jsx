@@ -41,10 +41,27 @@ const Login = () => {
     event.preventDefault();
     logInWithGoogle()
       .then((result) => {
-        console.log(result);
+        console.log("you have logged in successfully", result);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You have logged in successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        gonnaSendYou(whereYouWannaGo?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("sorry there has been an error!", error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "There has been an error. Please try again.",
+          showConfirmButton: false,
+          timer: 500,
+        });
+
+        gonnaSendYou(0);
       });
   };
 
