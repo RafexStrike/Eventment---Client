@@ -15,7 +15,7 @@ const MyGroupUpdate = () => {
   const { user } = useContext(AuthContext);
   const { displayName } = user;
   const email = user.email || user.providerData[0].email;
-  
+
   const [selectedHobby, setSelectedHobby] = useState("");
   const [isTheDropDownOpen, setIsTheDropDownOpen] = useState(false);
   const [startingDate, setStartingDate] = useState(null);
@@ -43,7 +43,9 @@ const MyGroupUpdate = () => {
     const description = event.target.description.value;
     const meetingLocation = event.target.meetingLocation.value;
     const maxMembers = event.target.maxMembers.value;
-    const startDate = startingDate ? startingDate.toISOString().split("T")[0] : null;
+    const startDate = startingDate
+      ? startingDate.toISOString().split("T")[0]
+      : null;
     const imageUrl = event.target.imageUrl.value;
 
     // Check if required fields are filled
@@ -85,7 +87,7 @@ const MyGroupUpdate = () => {
       .then((result) => {
         if (result.acknowledged) {
           console.log("successfully updated the data bruh", result);
-            
+
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -93,7 +95,7 @@ const MyGroupUpdate = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          iAmGonnaSendYouTo('/myGroups/get');
+          iAmGonnaSendYouTo("/myGroups/get");
         }
       })
       .catch((error) => {
@@ -111,8 +113,8 @@ const MyGroupUpdate = () => {
       <div className="">
         <h1 className="my-4 text-4xl text-center">Update your group info</h1>
         <p className="mb-6 text-center max-w-4xl mx-auto">
-          Update your group details to keep your members informed about any changes
-          to your hobby group.
+          Update your group details to keep your members informed about any
+          changes to your hobby group.
         </p>
       </div>
       <div className="rounded-lg p-4 shadow-md">
@@ -154,47 +156,33 @@ const MyGroupUpdate = () => {
                   className="dropdown-content menu bg-base-100 rounded-box z-1 w-full p-2 shadow-sm"
                 >
                   <li>
-                    <a
-                      onClick={() =>
-                        handleCategorySelection("Drawing & Painting")
-                      }
-                    >
-                      Drawing & Painting
+                    <a onClick={() => handleCategorySelection("Cleanup")}>
+                      Cleanup
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Photography")}>
-                      Photography
+                    <a onClick={() => handleCategorySelection("Plantation")}>
+                      Plantation
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Video Gaming")}>
-                      Video Gaming
+                    <a onClick={() => handleCategorySelection("Donation")}>
+                      Donation
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Fishing")}>
-                      Fishing
+                    <a onClick={() => handleCategorySelection("Community Art")}>
+                      Community Art
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Running")}>
-                      Running
+                    <a onClick={() => handleCategorySelection("Education")}>
+                      Education
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Cooking")}>
-                      Cooking
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Reading")}>
-                      Reading
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Writing")}>
-                      Writing
+                    <a onClick={() => handleCategorySelection("Volunteering")}>
+                      Volunteering
                     </a>
                   </li>
                 </ul>

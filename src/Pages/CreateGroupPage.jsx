@@ -142,47 +142,33 @@ const CreateGroupPage = () => {
                   className="dropdown-content menu bg-base-100 rounded-box z-1 w-full p-2 shadow-sm"
                 >
                   <li>
-                    <a
-                      onClick={() =>
-                        handleCategorySelection("Drawing & Painting")
-                      }
-                    >
-                      Drawing & Painting
+                    <a onClick={() => handleCategorySelection("Cleanup")}>
+                      Cleanup
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Photography")}>
-                      Photography
+                    <a onClick={() => handleCategorySelection("Plantation")}>
+                      Plantation
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Video Gaming")}>
-                      Video Gaming
+                    <a onClick={() => handleCategorySelection("Donation")}>
+                      Donation
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Fishing")}>
-                      Fishing
+                    <a onClick={() => handleCategorySelection("Community Art")}>
+                      Community Art
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Running")}>
-                      Running
+                    <a onClick={() => handleCategorySelection("Education")}>
+                      Education
                     </a>
                   </li>
                   <li>
-                    <a onClick={() => handleCategorySelection("Cooking")}>
-                      Cooking
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Reading")}>
-                      Reading
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Writing")}>
-                      Writing
+                    <a onClick={() => handleCategorySelection("Volunteering")}>
+                      Volunteering
                     </a>
                   </li>
                 </ul>
