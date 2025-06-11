@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/groups",
-        loader: () => fetch("http://localhost:3000/events/get"),
+        // loader: () => fetch("http://localhost:3000/events/get"),
         element: <AllGroups></AllGroups>,
       },
       {
