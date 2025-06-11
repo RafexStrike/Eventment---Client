@@ -10,7 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const CreateGroupPage = () => {
   const { user } = useContext(AuthContext);
-  const { displayName, email } = user;
+  const { displayName } = user;
+  const email = user.email || user.providerData[0].email;
   const [selectedHobby, setSelectedHobby] = useState("");
   const [isTheDropDownOpen, setIsTheDropDownOpen] = useState(false);
   const iAmGonnaSendYouTo = useNavigate();
@@ -22,6 +23,15 @@ const CreateGroupPage = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
+    const eventTitle = event.target.eventTitle.value;
+    const eventType = selectedHobby;
+    const description = event.target.description.value;
+    const meetingLocation = event.target.meetingLocation.value;
+    const maxMembers = event.target.maxMembers.value;
+    const startDate = startingDate.toISOString().split("T")[0];
+    const imageUrl = event.target.imageUrl.value;
+    const isActive = true;
 
     // Check if hobby category is selected
     if (
@@ -35,20 +45,11 @@ const CreateGroupPage = () => {
     ) {
       Swal.fire({
         icon: "warning",
-        title: "A required field is missing",
-        text: "Please look out for the required fields which are marked in red asterisk!",
+        title: "Event Type is missing",
+        text: "Please look out for the dropdown and select an Event Type!",
       });
       return;
     }
-
-    const eventTitle = event.target.eventTitle.value;
-    const eventType = selectedHobby;
-    const description = event.target.description.value;
-    const meetingLocation = event.target.meetingLocation.value;
-    const maxMembers = event.target.maxMembers.value;
-    const startDate = startingDate.toISOString().split("T")[0];
-    const imageUrl = event.target.imageUrl.value;
-    const isActive = true;
 
     const createdGroupInfoObject = {
       eventTitle,
@@ -107,7 +108,9 @@ const CreateGroupPage = () => {
         <form onSubmit={handleFormSubmit} className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Event Name<span className="text-red-500">*</span></legend>
+              <legend className="fieldset-legend">
+                Event Name<span className="text-red-500">*</span>
+              </legend>
               <input
                 name="eventTitle"
                 type="text"
@@ -198,7 +201,9 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Meeting Location<span className="text-red-500">*</span></legend>
+              <legend className="fieldset-legend">
+                Meeting Location<span className="text-red-500">*</span>
+              </legend>
               <input
                 name="meetingLocation"
                 type="text"
@@ -208,7 +213,9 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Max Members<span className="text-red-500">*</span></legend>
+              <legend className="fieldset-legend">
+                Max Members<span className="text-red-500">*</span>
+              </legend>
               <input
                 name="maxMembers"
                 type="number"
@@ -218,7 +225,9 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Start Date<span className="text-red-500">*</span></legend>
+              <legend className="fieldset-legend">
+                Start Date<span className="text-red-500">*</span>
+              </legend>
               <DatePicker
                 placeholderText="Select a start date"
                 name="startDate"
@@ -246,14 +255,17 @@ const CreateGroupPage = () => {
               />
             </fieldset>
             <fieldset className="fieldset mt-8">
-              <legend className="fieldset-legend">User Email<span className="text-red-500">*</span></legend>
+              <legend className="fieldset-legend">
+                User Email<span className="text-red-500">*</span>
+              </legend>
               <input
+                placeholder="Enter your email"
                 name="userEmail"
                 type="text"
                 className="input w-full "
-                value={email}
+                defaultValue={email}
                 required
-                readOnly
+                // readOnly
               />
             </fieldset>
           </div>
