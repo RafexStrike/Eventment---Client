@@ -3,15 +3,17 @@ import React, { useEffect, useState } from "react";
 import GroupCard from "../Components/Group/GroupCard";
 
 const AllGroups = () => {
-  // const allGroupsFetchedFromDB = useLoaderData();
+  
   const [allGroupsFetchedFromDB, setAllEventsFetchedFromDB] = useState([]);
-  const [filterType, setFilterType] = useState("");
 
+  
+  const [filterType, setFilterType] = useState("");
+  const [searchText, setSearchText] = useState("");
   useEffect(() => {
     const fetchEvents = async () => {
       const res = await fetch(
-        filterType
-          ? `http://localhost:3000/events/get?type=${filterType}`
+        filterType || searchText
+          ? `http://localhost:3000/events/get?type=${filterType}&search=${searchText}`
           : `http://localhost:3000/events/get`
       );
 
@@ -19,9 +21,16 @@ const AllGroups = () => {
       setAllEventsFetchedFromDB(data);
     };
     fetchEvents();
-  }, [filterType]);
+  }, [filterType, searchText]);
 
-  const [searchText, setSearchText] = useState("");
+ 
+  // useEffect(()=>{
+  //   const fetchSearchedResults = async() =>{
+  //     const res = await fetch(
+  //       searchText ? `http://localhost:3000/events/get`
+  //     )
+  //   }
+  // })
 
   return (
     <div className="px-4 md:px-0  max-w-6xl mx-auto mt-20 mb-28">
