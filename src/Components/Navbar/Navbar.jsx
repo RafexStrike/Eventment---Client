@@ -46,17 +46,17 @@ const Navbar = () => {
         Signup
       </NavLink>
       <NavLink className="nav-link " to="/groups">
-        All Groups
+        Upcoming Events
       </NavLink>
-      <NavLink className="nav-link " to="/myGroups/get">
-        My Groups
+      {/* <NavLink className="nav-link " to="/myGroups/get">
+        My Events
       </NavLink>
       <NavLink className="nav-link " to="/createGroup">
         Create Group
-      </NavLink>
-      <NavLink className="nav-link " to="/myJoinedEvents">
+      </NavLink> */}
+      {/* <NavLink className="nav-link " to="/myJoinedEvents">
         Joined Events
-      </NavLink>
+      </NavLink> */}
     </>
   );
 
@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
           {user ? (
             <div className="flex items-center gap-2 md:gap-4">
-              <Link to="/profile" className="flex items-center gap-2">
+              {/* <Link to="/profile" className="flex items-center gap-2">
                 <img
                   title={user?.displayName || "User"}
                   src={
@@ -126,16 +126,63 @@ const Navbar = () => {
                   alt="Profile"
                   className="w-8 h-8 rounded-full object-cover ring-2 ring-primary"
                 />
-                {/* <span className="hidden md:inline text-gray-700 truncate max-w-[120px]">
-                  {user.email}
-                </span> */}
               </Link>
               <button
                 onClick={handleLogOut}
                 className="btn btn-success btn-sm md:btn-md rounded-lg"
               >
                 Logout
-              </button>
+              </button> */}
+              <div className="dropdown dropdown-end dropdown-hover">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img
+                      title={user?.displayName || "User"}
+                      src={
+                        user?.photoURL ||
+                        user?.reloadUserInfo?.photoUrl ||
+                        defaultProfilePic
+                      }
+                      alt="User"
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li className="text-center font-bold text-sm text-gray-500">
+                    {user?.displayName}
+                  </li>
+                  <li>
+                    <Link to="/createGroup">Create Event</Link>
+                  </li>
+                  <li>
+                    <Link to="/myGroups/get">Manage Events</Link>
+                  </li>
+                  <li>
+                    <Link to="/myJoinedEvents">Joined Events</Link>
+                  </li>
+                  {/* <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="text-red-500 font-semibold"
+                    >
+                      Logout
+                    </button>
+                  </li> */}
+                </ul>
+                <button
+                  onClick={handleLogOut}
+                  className="ml-3 btn btn-success btn-sm md:btn-md rounded-lg"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           ) : (
             <Link
