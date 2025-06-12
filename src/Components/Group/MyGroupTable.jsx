@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../JWT/Hooks/useAxiosSecure";
+import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 
 const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
   const [isDeleting, setIsDeleting] = useState(false);
+  const axiosSecure = useAxiosSecure();
+  // const {user} = useContext(AuthContext)
+  // const {email} = user
+  const {
+    eventTitle,
+    eventType,
+    description,
+    meetingLocation,
+    maxMembers,
+    startDate,
+    imageUrl,
+    displayName,
+    email,
+  } = oneGroupData;
 
   const handleDeleteMyGroup = (_id) => {
     Swal.fire({
@@ -18,12 +34,14 @@ const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
         setIsDeleting(true);
-        
-        fetch(`http://localhost:3000/myEvent/delete/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((result) => {
+
+        // fetch(`http://localhost:3000/myEvent/delete/${_id}`, {
+        //   method: "DELETE",
+        // })
+        axiosSecure
+          .delete(`/myEvent/delete/${_id}?email=${email}`)
+          .then((res) => {
+            const result = res.data;
             console.log(result);
             if (result.deletedCount) {
               Swal.fire({
@@ -44,19 +62,8 @@ const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
       }
     });
   };
-  
 
-  const {
-    eventTitle,
-    eventType,
-    description,
-    meetingLocation,
-    maxMembers,
-    startDate,
-    imageUrl,
-    displayName,
-    email,
-  } = oneGroupData;
+
 
   return (
     <tr className="hover:bg-base-200 transition-colors">
@@ -76,23 +83,25 @@ const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
       <td>{displayName}</td>
       <td>{email}</td>
       <td className="flex gap-2 justify-center">
-        <Link 
-        className="btn btn-primary btn-xs"
-        to={`/myGroups/update/${oneGroupData._id}`}
-        >Update</Link>
+        <Link
+          className="btn btn-primary btn-xs"
+          to={`/myGroups/update/${oneGroupData._id}`}
+        >
+          Update
+        </Link>
         <button
           onClick={() => handleDeleteMyGroup(oneGroupData._id)}
           className="btn btn-error btn-xs"
           disabled={isDeleting}
         >
           {isDeleting ? (
-                 <div className="flex justify-center items-center h-screen">
-                 <span className="loading loading-ball loading-xs"></span>
-                 <span className="loading loading-ball loading-sm"></span>
-                 <span className="loading loading-ball loading-md"></span>
-                 <span className="loading loading-ball loading-lg"></span>
-                 <span className="loading loading-ball loading-xl"></span>
-               </div>
+            <div className="flex justify-center items-center h-screen">
+              <span className="loading loading-ball loading-xs"></span>
+              <span className="loading loading-ball loading-sm"></span>
+              <span className="loading loading-ball loading-md"></span>
+              <span className="loading loading-ball loading-lg"></span>
+              <span className="loading loading-ball loading-xl"></span>
+            </div>
           ) : (
             "Delete"
           )}

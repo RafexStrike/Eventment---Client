@@ -1,5 +1,5 @@
 import React from "react";
-import useAxiosSecure from "../userAxiosSecure";
+import useAxiosSecure from "../useAxiosSecure";
 
 const useMyApplicationAPI = () => {
   const axiosSecure = useAxiosSecure();
