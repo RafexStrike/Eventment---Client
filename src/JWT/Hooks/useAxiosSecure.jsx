@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
@@ -30,6 +31,11 @@ const useAxiosSecure = () => {
             console.log(
               "the user has been signed out bacause of 401 or 403 status code."
             );
+            Swal.fire({
+              icon: "error",
+              title: "Oops..!",
+              text: "You have been signed out bacause of 401 or 403 status code.",
+            });
             navigate("/login");
           })
           .catch((error) => {

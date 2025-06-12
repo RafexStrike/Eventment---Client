@@ -1,26 +1,54 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import { Link } from "react-router";
+import useAxiosSecure from "../../JWT/Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ShowMyJoinedGroups = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const { email } = user;
   const [myEvents, setMyEvents] = useState([]);
 
-  fetch(`http://localhost:3000/joinedEvent/${email}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      setMyEvents(data);
-    })
-    .catch((error) => {
-      console.error("Fetch error:", error);
-    });
+  // fetch(`http://localhost:3000/joinedEvent/${email}`)
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     console.log(data);
+  //     setMyEvents(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Fetch error:", error);
+  //   });
+
+  useEffect(() => {
+    axiosSecure
+      .get(`/joinedEvent?email=${email}`)
+      .then((res) => {
+        const result = res.data;
+        setMyEvents(result);
+        console.log("Success:", result);
+
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "Joined!",
+        //   text: "You have successfully joined the event.",
+        // });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+
+        console.error("Error:", error);
+      });
+  }, [user, axiosSecure, email]);
   return (
     <div className="max-w-6xl mx-auto mt-10 mb-24  rounded-xl">
       <div className="overflow-x-auto">
