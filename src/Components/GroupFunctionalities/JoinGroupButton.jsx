@@ -3,8 +3,10 @@ import Lottie from "lottie-react";
 import loveIcon from "../../assets/Lottie-React-Love-Icon.json";
 import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../JWT/Hooks/useAxiosSecure";
 
 const JoinGroupButton = ({ groupDetails }) => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   // const userEmail = user.email;
   const { email } = user;
@@ -18,44 +20,39 @@ const JoinGroupButton = ({ groupDetails }) => {
   };
   const handleJoinGroupButton = () => {
     console.log(email);
-    fetch("http://localhost:3000/joinedEvent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataToSend),
-    })
-      .then(async (res) => {
-        if (res.status === 409) {
-          Swal.fire({
-            icon: "error",
-            title: "Already Joined",
-            text: "You have already joined this event!",
-          });
-          return;
-        }
-        if (!res.ok) {
-          throw new Error(`Unexpected error: ${res.status}`);
-        }
-
-        const responseData = await res.json();
-
-        // Success message
+    // fetch("http://localhost:3000/joinedEvent", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(dataToSend),
+    // })
+    axiosSecure
+      .post("/joinedEvent", dataToSend)
+      .then((res) => {
         Swal.fire({
           icon: "success",
           title: "Joined!",
           text: "You have successfully joined the event.",
         });
 
-        console.log("Success:", responseData);
+        console.log("Success:", res.data);
       })
       .catch((error) => {
+        if (error.response && error.response.status === 409) {
+          Swal.fire({
+            icon: "error",
+            title: "Already Joined",
+            text: "You have already joined this event!",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
         console.error("Error:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
       });
   };
   return (
