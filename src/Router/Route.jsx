@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myGroups/get",
-        loader: () => fetch(`http://localhost:3000/events/get`),
+        // loader: () => fetch(`http://localhost:3000/events/get`),
         element: (
           <Suspense
             fallback={

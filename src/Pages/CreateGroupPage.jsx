@@ -109,7 +109,7 @@ const CreateGroupPage = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        iAmGonnaSendYouTo("/myGroups/get");
+        iAmGonnaSendYouTo("/groups");
       }
     })
     .catch((error) => {
