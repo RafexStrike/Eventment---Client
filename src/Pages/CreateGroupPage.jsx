@@ -7,8 +7,10 @@ import groupIcon from "../assets/Lottie-Animation.json";
 // the next two lines are for date picker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAxiosSecure from "../JWT/Hooks/useAxiosSecure";
 
 const CreateGroupPage = () => {
+  const axiosSecure = useAxiosSecure()
   const { user } = useContext(AuthContext);
   const { displayName } = user;
   const email = user.email || user.providerData[0].email;
@@ -64,35 +66,63 @@ const CreateGroupPage = () => {
       isActive,
     };
 
-    fetch("http://localhost:3000/events/post", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createdGroupInfoObject),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.insertedId) {
-          console.log("successfully posted the data bruh", result);
+    // fetch("http://localhost:3000/events/post", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(createdGroupInfoObject),
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => {
+    //     if (result.insertedId) {
+    //       console.log("successfully posted the data bruh", result);
 
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Group successfully created!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          iAmGonnaSendYouTo("/myGroups/get");
-        }
-      })
-      .catch((error) => {
-        console.log("sorry there has been an error", error);
+    //       Swal.fire({
+    //         position: "top-end",
+    //         icon: "success",
+    //         title: "Group successfully created!",
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //       iAmGonnaSendYouTo("/myGroups/get");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log("sorry there has been an error", error);
+    //     Swal.fire({
+    //       icon: "error",
+    //       title: "Oops...",
+    //       text: "Something went wrong!",
+    //     });
+    //   });
+    axiosSecure
+    .post(`/events/post?email=${email}`, createdGroupInfoObject)
+    .then((res) => {
+      const result = res.data;
+
+      if (result.acknowledged) {
+        console.log("successfully updated the data bruh", result);
+
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          position: "top-end",
+          icon: "success",
+          title: "Your group data has been updated!",
+          showConfirmButton: false,
+          timer: 1500,
         });
+        iAmGonnaSendYouTo("/myGroups/get");
+      }
+    })
+    .catch((error) => {
+      console.log("sorry there has been an error", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong updating the data:( Please try again!",
       });
+    });
+      
   };
+
 
   return (
     <div className=" px-4 md:px-0  max-w-6xl mx-auto mt-20 mb-28">
