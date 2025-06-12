@@ -7,10 +7,12 @@ import groupIcon from "../../assets/Lottie-Animation.json";
 // the next two lines are for date picker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAxiosSecure from "../../JWT/Hooks/useAxiosSecure";
 
 const MyGroupUpdate = () => {
   const groupData = useLoaderData();
   const iAmGonnaSendYouTo = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const { user } = useContext(AuthContext);
   const { displayName } = user;
@@ -78,13 +80,17 @@ const MyGroupUpdate = () => {
       email,
     };
 
-    fetch(`http://localhost:3000/myEvent/put/${groupData._id}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(updatedGroupInfoObject),
-    })
-      .then((response) => response.json())
-      .then((result) => {
+    // fetch(`http://localhost:3000/myEvent/put/${groupData._id}?email=${email}`, {
+    //   method: "PUT",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(updatedGroupInfoObject),
+    // })
+    //   .then((response) => response.json())
+    axiosSecure
+      .put(`/myEvent/put/${groupData._id}?email=${email}`, updatedGroupInfoObject)
+      .then((res) => {
+        const result = res.data;
+
         if (result.acknowledged) {
           console.log("successfully updated the data bruh", result);
 
