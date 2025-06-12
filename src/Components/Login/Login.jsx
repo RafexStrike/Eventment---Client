@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import LottieReact from "../LottieReact/LottieReact";
 const Login = () => {
-  const { logIn, isLoadingDone, logInWithGoogle } = useContext(AuthContext);
+  const { logIn, isLoadingDone, setIsLoadingDone, logInWithGoogle } = useContext(AuthContext);
 
   const gonnaSendYou = useNavigate();
   const whereYouWannaGo = useLocation();
@@ -29,12 +29,16 @@ const Login = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "There has been an error. Please try again.",
-          showConfirmButton: false,
-          timer: 500,
+          title: "Oops...Login failed!",
+          text: `There has been an error. ${error} Please try again.`,
+          // showConfirmButton: false,
+          // timer: 500,
         });
 
-        gonnaSendYou(0);
+        // gonnaSendYou(0);
+      })
+      .finally(() => {
+        setIsLoadingDone(true);
       });
   };
   const handleGoogleLogIn = (event) => {

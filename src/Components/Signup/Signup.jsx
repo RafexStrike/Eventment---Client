@@ -46,7 +46,7 @@ const Signup = () => {
       .catch((error) => {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "Oops...Signup failed!",
           text: `An error has occured! ${error}. Please try again.`,
           
         });
