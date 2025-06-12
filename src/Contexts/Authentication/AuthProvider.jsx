@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
     logInWithGoogle,
     bidayPrithibi,
     storeNameAndPhotoUrlInFirebase,
+    setIsLoadingDone,
 
   };
   return (

@@ -8,6 +8,7 @@ const Signup = () => {
     signUp,
     logInWithGoogle,
     isLoadingDone,
+    setIsLoadingDone,
     storeNameAndPhotoUrlInFirebase,
   } = useContext(AuthContext);
   const gonnaSendYou = useLocation();
@@ -27,7 +28,6 @@ const Signup = () => {
         icon: "error",
         title: "Make the password stronger...",
         text: "Password must be at least 6 characters long and include at least one uppercase and one lowercase letter.!",
-        
       });
       return;
     }
@@ -48,10 +48,15 @@ const Signup = () => {
           icon: "error",
           title: "Oops...",
           text: `An error has occured! ${error}. Please try again.`,
+          
         });
+        // gonnaSendYou(0);
+      })
+      .finally(() => {
+        setIsLoadingDone(true);
       });
   };
-  
+
   const handleGoogleLogIn = (event) => {
     event.preventDefault();
     logInWithGoogle()
@@ -75,9 +80,10 @@ const Signup = () => {
           showConfirmButton: false,
           timer: 500,
         });
-
-        gonnaSendYou(0);
       });
+    // .finally(() => {
+    //   setIsLoadingDone(true);
+    // });
   };
 
   if (!isLoadingDone) {

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import {AuthContext} from "../../Contexts/Authentication/AuthContext"
+import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import { useNavigate } from "react-router";
 
 const axiosInstance = axios.create({
@@ -23,7 +23,8 @@ const useAxiosSecure = () => {
   axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.status === 401 || error.status === 403) {
+      //   if (error.status === 401 || error.status === 403)
+      if (error.response?.status === 401 || error.response?.status === 403) {
         bidayPrithibi()
           .then(() => {
             console.log(
