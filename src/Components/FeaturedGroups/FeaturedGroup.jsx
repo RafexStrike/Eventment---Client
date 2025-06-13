@@ -83,14 +83,14 @@ const FeaturedGroup = () => {
             data-aos="fade-right"
             className="text-4xl lg:text-5xl font-bold mb-4 text-primary"
           >
-            Featured Groups
+            Upcoming Events
           </h2>
           <p
             data-aos="fade-left"
             data-aos-delay="100"
             className="text-lg text-gray-600 max-w-2xl mx-auto"
           >
-            Discover what's happening next! Join or groups at inspiring,
+            Discover what's happening next! Join or events at inspiring,
             high-energy gatherings designed to connect, educate, and empower our
             vibrant community.
           </p>

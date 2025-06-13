@@ -5,6 +5,7 @@ import EventSponsorshipLayout from "../DummyStaticHomeComponents/EventSponsorshi
 import SuccessStories from "../FeaturedGroups/SuccessStories";
 import GallerySection from "./GallerySection";
 import Features from "./Features";
+import Newsletter from "./Newsletter";
 
 const Home = () => {
   const eventsRef = useRef(null);
@@ -19,8 +20,9 @@ const Home = () => {
       </div>
       <GallerySection></GallerySection>
       <Features></Features>
-      <EventSponsorshipLayout></EventSponsorshipLayout>
+      {/* <EventSponsorshipLayout></EventSponsorshipLayout> */}
       <SuccessStories></SuccessStories>
+      <Newsletter></Newsletter>
     </div>
   );
 };

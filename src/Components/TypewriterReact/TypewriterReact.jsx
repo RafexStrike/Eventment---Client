@@ -20,7 +20,7 @@ const TypewriterReact = () => {
           {/* Style will be inherited from the parent element */}
           <Typewriter
             
-            words={['Group', 'Event', 'Squad', 'Gang!']}
+            words={['Group', 'Gang', 'Squad', 'Event!']}
             loop={5}
             cursor
             cursorStyle='_'

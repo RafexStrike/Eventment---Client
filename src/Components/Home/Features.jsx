@@ -34,8 +34,8 @@ const Features = () => {
     },
     {
       icon: <FaBell className="w-8 h-8" />,
-      title: "Smart Notifications",
-      description: "Stay updated with real-time notifications about events, updates, and community activities."
+      title: " Seamless Updates",
+      description: "Always stay in the loop with automatic updates on events, new projects, and community activities that matter to you"
     },
     {
       icon: <FaSearch className="w-8 h-8" />,
@@ -57,14 +57,14 @@ const Features = () => {
               data-aos="fade-right"
               className="text-4xl lg:text-5xl font-bold mb-4 text-primary"
             >
-              Empowering Community Action
+              Empowering Community Features
             </h2>
             <p
               data-aos="fade-left"
               data-aos-delay="100"
               className="text-lg text-gray-600 max-w-2xl mx-auto"
             >
-              Discover how our platform makes it easy to create positive change in your community.
+              Discover how our platform's <span>features</span> makes it easy to create positive change in your community.
               Join us in building a better tomorrow, one event at a time.
             </p>
           </div>
@@ -76,10 +76,10 @@ const Features = () => {
               key={index}
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
             >
               <div className="text-primary mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-900">
+              <h3 className="text-xl font-semibold mb-3 text-base">
                 {feature.title}
               </h3>
               <p className="text-gray-600">
