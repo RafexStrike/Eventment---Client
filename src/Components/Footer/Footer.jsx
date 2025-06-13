@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Company Info */}
                     <div>
-                        <h3 className="text-2xl font-bold mb-4">HobbyHub</h3>
+                        <h3 className="text-2xl font-bold mb-4">Eventment</h3>
                         <p className="text-[#ECE3CA] mb-4">
                             Creating unforgettable experiences and connecting people through amazing events.
                         </p>
@@ -106,7 +106,7 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-[#ECE3CA] text-center">
                     <p className="text-[#ECE3CA] flex items-center justify-center gap-2">
-                        © 2025 HobbyHub. Made with <FaHeart className="text-[#FF9FA0]" /> in Bangladesh
+                        © 2025 Eventment. Made with <FaHeart className="text-[#FF9FA0]" /> in Bangladesh
                     </p>
                 </div>
             </div>

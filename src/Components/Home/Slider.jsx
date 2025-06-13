@@ -48,7 +48,7 @@ const Slider = ({ onJoinNowClick }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Support local vibes! Join or create Groups to bring your community together!
+              Support local vibes! Join or create Events to bring your community together!
             </motion.p>
 
             <motion.div
@@ -70,7 +70,7 @@ const Slider = ({ onJoinNowClick }) => {
                   }
                 }}
               >
-                Explore Groups
+                Explore Events
               </motion.button>
             </motion.div>
 

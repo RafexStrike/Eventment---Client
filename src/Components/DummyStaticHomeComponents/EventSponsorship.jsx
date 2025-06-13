@@ -32,7 +32,7 @@ const EventSponsorshipLayout = () => {
             data-aos-delay="200"
             className="text-lg text-gray-600 max-w-2xl mx-auto"
           >
-            Join forces with HobbyHub to create unforgettable experiences and
+            Join forces with Eventment to create unforgettable experiences and
             reach our vibrant communities!
           </p>
         </div>
@@ -53,10 +53,10 @@ const EventSponsorshipLayout = () => {
             <div className="p-8">
               <h2 className="text-2xl lg:text-3xl font-bold mb-4 flex items-center gap-3">
                 <FaHandshake className="text-primary" />
-                Custom Group Format
+                Custom Event Format
               </h2>
               <p className="mb-6 text-gray-700 leading-relaxed">
-                Create your perfect Group with our expert team. We'll handle
+                Create your perfect Event with our expert team. We'll handle
                 everything from concept to execution, ensuring your vision comes
                 to life.
               </p>
@@ -95,10 +95,10 @@ const EventSponsorshipLayout = () => {
             <div className="p-8">
               <h2 className="text-2xl lg:text-3xl font-bold mb-4 flex items-center gap-3">
                 <FaCalendarCheck className="text-accent" />
-                Group Sponsorship
+                Event Sponsorship
               </h2>
               <p className="mb-6 text-gray-700 leading-relaxed">
-                Maximize your brand's visibility through our quarterly Group
+                Maximize your brand's visibility through our quarterly Event
                 series. Connect with our community through multiple touchpoints
                 and build lasting relationships.
               </p>

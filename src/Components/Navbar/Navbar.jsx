@@ -101,7 +101,7 @@ const Navbar = () => {
             {/* add the customized logo you build in here */}
             <Logo></Logo>
             <Link to="/" className=" text-xl font-bold">
-              HobbyHub
+              Eventment
             </Link>
           </div>
           {/* my own custom logo ends */}

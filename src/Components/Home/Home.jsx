@@ -3,6 +3,8 @@ import Slider from "./Slider";
 import FeaturedGroup from "../FeaturedGroups/FeaturedGroup";
 import EventSponsorshipLayout from "../DummyStaticHomeComponents/EventSponsorship";
 import SuccessStories from "../FeaturedGroups/SuccessStories";
+import GallerySection from "./GallerySection";
+import Features from "./Features";
 
 const Home = () => {
   const eventsRef = useRef(null);
@@ -15,6 +17,8 @@ const Home = () => {
       <div ref={eventsRef}>
         <FeaturedGroup></FeaturedGroup>
       </div>
+      <GallerySection></GallerySection>
+      <Features></Features>
       <EventSponsorshipLayout></EventSponsorshipLayout>
       <SuccessStories></SuccessStories>
     </div>

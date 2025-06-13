@@ -22,7 +22,7 @@ const SuccessStories = () => {
       image:
         "https://i.postimg.cc/4dX0z11n/03004d03-2602-43ba-9c7b-742c1af5120e.png",
       quote:
-        "HobbyHub's helped me join a tech workshop and host a poetry event easily!",
+        "Eventment's helped me join a tech workshop and host a poetry event easily!",
       rating: 5,
     },
     {
@@ -30,7 +30,7 @@ const SuccessStories = () => {
       role: "Student, BRAC University",
       image: "https://i.postimg.cc/K8tD9nZk/image-9.jpg",
       quote:
-        "Found a photography Group on HubbyHub, reserved a spot, and man I loved the local Bangaldeshi vibes it gave!",
+        "Found a photography event on Eventment, reserved a spot, and man I loved the local Bangaldeshi vibes it gave!",
       rating: 5,
     },
     {
@@ -39,7 +39,7 @@ const SuccessStories = () => {
       image:
         "https://i.postimg.cc/Zn9r6N7q/2d76a4ca-2339-4d25-a241-b9f64961fa8b.png",
       quote:
-        "HobbyHub's let me and my batchmates join an art Group and host a career talk from NSU!",
+        "Eventment's let me and my batchmates join an art event and host a career talk from NSU!",
       rating: 5,
     },
   ];
@@ -77,7 +77,7 @@ const SuccessStories = () => {
           </h2>
           <p  data-aos="fade-left" data-aos-delay="100" className="text-lg text-gray-600 max-w-2xl mx-auto">
             Don't just take our word for it. See what our users have to say
-            about their experience with HobbyHub.
+            about their experience with Eventment.
           </p>
         </div>
 
