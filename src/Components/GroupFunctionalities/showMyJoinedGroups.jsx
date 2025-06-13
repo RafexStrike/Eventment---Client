@@ -31,7 +31,7 @@ const ShowMyJoinedGroups = () => {
       .then((res) => {
         const result = res.data;
         setMyEvents(result);
-        console.log("Success:", result);
+        // console.log("Success:", result);
 
         // Swal.fire({
         //   icon: "success",
@@ -58,7 +58,7 @@ const ShowMyJoinedGroups = () => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Job</th>
+              <th>About</th>
               <th>Event Date</th>
               <th></th>
             </tr>
@@ -112,7 +112,7 @@ const ShowMyJoinedGroups = () => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Job</th>
+              <th>About</th>
               <th>Favorite Color</th>
               <th></th>
             </tr>

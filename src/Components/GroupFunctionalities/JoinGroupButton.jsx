@@ -19,7 +19,7 @@ const JoinGroupButton = ({ groupDetails }) => {
     groupID,
   };
   const handleJoinGroupButton = () => {
-    console.log(email);
+    // console.log(email);
     // fetch("http://localhost:3000/joinedEvent", {
     //   method: "POST",
     //   headers: {

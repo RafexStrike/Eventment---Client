@@ -14,7 +14,7 @@ const Login = () => {
     const password = event.target.password.value;
     logIn(email, password)
       .then((result) => {
-        console.log("you have logged in successfully", result);
+        console.log("you have logged in successfully");
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -45,7 +45,7 @@ const Login = () => {
     event.preventDefault();
     logInWithGoogle()
       .then((result) => {
-        console.log("you have logged in successfully", result);
+        console.log("you have logged in successfully");
         Swal.fire({
           position: "top-end",
           icon: "success",

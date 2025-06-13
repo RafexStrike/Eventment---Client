@@ -100,7 +100,7 @@ const CreateGroupPage = () => {
       const result = res.data;
 
       if (result.acknowledged) {
-        console.log("successfully updated the data bruh", result);
+        console.log("successfully updated the data bruh");
 
         Swal.fire({
           position: "top-end",

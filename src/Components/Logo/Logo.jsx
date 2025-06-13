@@ -1,62 +1,43 @@
-import React from 'react';
+import React from "react";
 
-const Logo = ({ color = '#000', size = 64 }) => {
-    return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width={size}
-          height={size}
-          viewBox="0 0 64 64"
-          style={{ fill: 'none', stroke: color, strokeWidth: 2 }}
-        >
-          {/* Central Circle */}
-          <circle cx="32" cy="32" r="16" stroke="currentColor" />
-    
-          {/* Zigzag Pattern Around the Circle */}
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(0, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(45, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(90, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(135, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(180, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(225, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(270, 32, 32)"
-          />
-          <path
-            d="M28,32 C28,28 30,25 32,25 C34,25 36,28 36,32 C36,36 34,39 32,39 C30,39 28,36 28,32 Z"
-            transform="rotate(315, 32, 32)"
-          />
-    
-          {/* Radiating Lines */}
-          <line x1="32" y1="16" x2="32" y2="48" />
-          <line x1="22.6" y1="22.6" x2="41.4" y2="41.4" />
-          <line x1="16" y1="32" x2="48" y2="32" />
-          <line x1="22.6" y1="41.4" x2="41.4" y2="22.6" />
-          <line x1="32" y1="48" x2="32" y2="16" />
-          <line x1="41.4" y1="22.6" x2="22.6" y2="41.4" />
-          <line x1="48" y1="32" x2="16" y2="32" />
-          <line x1="41.4" y1="41.4" x2="22.6" y2="22.6" />
-        </svg>
-      );
-    };
+const Logo = () => {
+  return (
+    <div className="inline-block transform hover:scale-105 transition-transform duration-300">
+      <svg
+        className="w-8 h-8 md:w-10 md:h-10"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Main circle representing gathering/community */}
+        <circle 
+          cx="20" 
+          cy="20" 
+          r="18" 
+          fill="#00736B"
+          className="transition-all duration-300 hover:fill-[#008075]"
+        />
+        
+        {/* Abstract people/gathering symbols */}
+        <path
+          d="M12 22C14.5 16 25.5 16 28 22"
+          stroke="#F3EDDC"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          className="transition-all duration-300"
+        />
+        
+        {/* Decorative accent elements */}
+        <circle 
+          cx="20" 
+          cy="14" 
+          r="4" 
+          fill="#FF9FA0"
+          className="transition-all duration-300 hover:fill-[#ffb5b6]"
+        />
+      </svg>
+    </div>
+  );
+};
 
 export default Logo;

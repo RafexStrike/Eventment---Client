@@ -148,7 +148,7 @@ const MyGroupUpdate = () => {
                 <div
                   onClick={() => {
                     setIsTheDropDownOpen(!isTheDropDownOpen);
-                    console.log(isTheDropDownOpen);
+                    // console.log(isTheDropDownOpen);
                   }}
                   tabIndex={0}
                   role="button"

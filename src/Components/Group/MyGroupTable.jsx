@@ -42,7 +42,7 @@ const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
           .delete(`/myEvent/delete/${_id}?email=${email}`)
           .then((res) => {
             const result = res.data;
-            console.log(result);
+            // console.log(result);
             if (result.deletedCount) {
               Swal.fire({
                 title: "Deleted!",

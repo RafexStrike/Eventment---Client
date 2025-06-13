@@ -100,7 +100,7 @@ const Navbar = () => {
           <div className="z-10 flex items-center ">
             {/* add the customized logo you build in here */}
             <Logo></Logo>
-            <Link to="/" className=" text-xl font-bold">
+            <Link to="/" className="ml-2 text-xl font-bold">
               Eventment
             </Link>
           </div>

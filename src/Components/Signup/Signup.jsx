@@ -20,7 +20,7 @@ const Signup = () => {
     const password = event.target.password.value;
     const name = event.target.name.value;
     const photoURL = event.target.photoURL.value;
-    console.log(email, password, name, photoURL);
+    // console.log(email, password, name, photoURL);
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
     if (!passwordRegex.test(password)) {
@@ -61,7 +61,7 @@ const Signup = () => {
     event.preventDefault();
     logInWithGoogle()
       .then((result) => {
-        console.log("you have logged in successfully", result);
+        console.log("you have logged in successfully");
         Swal.fire({
           position: "top-end",
           icon: "success",

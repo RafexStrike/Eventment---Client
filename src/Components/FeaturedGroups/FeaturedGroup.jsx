@@ -14,7 +14,7 @@ const FeaturedGroup = () => {
     fetch("http://localhost:3000/events/featured")
       .then((res) => res.json())
       .then((result) => {
-        console.log("presenting to you only the featured groups: ", result);
+        // console.log("presenting to you only the featured groups: ", result);
         setAllGroupsFetchedFromDB(result);
       })
       .catch(error => console.log("error after calling the api", error))

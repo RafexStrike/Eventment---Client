@@ -16,7 +16,7 @@ const SwiperTest = () => {
     {
       image: "https://i.postimg.cc/c4ySYmjV/image-4.jpg",
       title: "Tech Festival",
-      description: "Experience the sensation of cutting edge technology with your Group!"
+      description: "Experience the sensation of cutting edge technology in our tech events!"
     },
     {
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Panam_City_04.jpg/1200px-Panam_City_04.jpg",
@@ -26,7 +26,7 @@ const SwiperTest = () => {
     {
       image: "https://i.postimg.cc/KY4VCkwP/image-6.jpg",
       title: "Community Gathering",
-      description: "Join hands with your groupmates in Art."
+      description: "Join hands with your event-mates in Art."
     }
   ];
 
