@@ -125,189 +125,181 @@ const CreateGroupPage = () => {
 
 
   return (
-    <div className=" px-4 md:px-0  max-w-6xl mx-auto mt-20 mb-28">
-      <div className="">
-        <h1 className="my-4 text-4xl text-center">Create a new group</h1>
-        <p className="mb-6 text-center max-w-4xl mx-auto">
-          Bring people together around your passion. Fill out the form below to
-          start a new hobby group, share your interests, and meet like-minded
-          members.
-        </p>
-      </div>
-      <div className="rounded-lg p-4 shadow-md">
-        <form onSubmit={handleFormSubmit} className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Event Name<span className="text-red-500">*</span>
-              </legend>
-              <input
-                name="eventTitle"
-                type="text"
-                className="input w-full"
-                placeholder="What should your group be called"
-                required
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Event Type<span className="text-red-500">*</span>
-              </legend>
+    <div className="px-4 md:px-0 max-w-6xl mx-auto mt-20 mb-28">
+  <div className="text-center">
+    <h1 className="my-4 text-4xl font-bold text-primary">Create a new group</h1>
+    <p className="mb-6 text-base max-w-3xl mx-auto text-base-content">
+      Bring people together around your passion. Fill out the form below to start a new hobby group, share your interests, and meet like-minded members.
+    </p>
+  </div>
 
-              <div className="dropdown  ">
-                <div
-                  onClick={() => {
-                    setIsTheDropDownOpen(!isTheDropDownOpen);
-                    console.log(isTheDropDownOpen);
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  className=" w-full btn bg-none"
-                >
-                  {selectedHobby || "Select your hobby category"}
-                </div>
+  <div className="bg-base-100 rounded-xl p-6 shadow-lg">
+    <form onSubmit={handleFormSubmit} className="max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        {/* Event Title */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Event Name <span className="text-error">*</span>
+          </legend>
+          <input
+            name="eventTitle"
+            type="text"
+            className="input input-bordered w-full"
+            placeholder="What should your group be called"
+            required
+          />
+        </fieldset>
 
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-full p-2 shadow-sm"
-                >
-                  <li>
-                    <a onClick={() => handleCategorySelection("Cleanup")}>
-                      Cleanup
+        {/* Event Type */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Event Type <span className="text-error">*</span>
+          </legend>
+          <div className="dropdown w-full">
+            <div
+              onClick={() => setIsTheDropDownOpen(!isTheDropDownOpen)}
+              tabIndex={0}
+              role="button"
+              className="btn w-full justify-between bg-base-200"
+            >
+              {selectedHobby || "Select your hobby category"}
+            </div>
+            {isTheDropDownOpen && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 shadow-md rounded-box w-full mt-2"
+              >
+                {[
+                  "Cleanup",
+                  "Plantation",
+                  "Donation",
+                  "Community Art",
+                  "Education",
+                  "Volunteering",
+                ].map((item) => (
+                  <li key={item}>
+                    <a
+                      className="hover:bg-primary hover:text-primary-content transition-all"
+                      onClick={() => handleCategorySelection(item)}
+                    >
+                      {item}
                     </a>
                   </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Plantation")}>
-                      Plantation
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Donation")}>
-                      Donation
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Community Art")}>
-                      Community Art
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Education")}>
-                      Education
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleCategorySelection("Volunteering")}>
-                      Volunteering
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Description
-                <span className="font-extralight text-sm">(optional)</span>
-              </legend>
-              <input
-                name="description"
-                type="text"
-                className="input w-full"
-                placeholder="Tell us something about your group"
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Meeting Location<span className="text-red-500">*</span>
-              </legend>
-              <input
-                name="meetingLocation"
-                type="text"
-                className="input w-full"
-                placeholder="Where do you guys wanna meet up"
-                required
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Max Members<span className="text-red-500">*</span>
-              </legend>
-              <input
-                name="maxMembers"
-                type="number"
-                className="input w-full"
-                placeholder="Maximum number of people you want to allow"
-                required
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Start Date<span className="text-red-500">*</span>
-              </legend>
-              <DatePicker
-                placeholderText="Select a start date"
-                name="startDate"
-                type="date"
-                className="input w-full"
-                dateFormat="yyyy-MM-dd"
-                selected={startingDate}
-                onChange={(date) => {
-                  setStartingDate(date);
-                  console.log(date);
-                }}
-                required
-                minDate={new Date()}
-              />
-            </fieldset>
-
-            <fieldset className="fieldset mt-8">
-              <legend className="fieldset-legend">User Name</legend>
-              <input
-                name="userName"
-                type="text"
-                className="input w-full "
-                value={displayName}
-                readOnly
-              />
-            </fieldset>
-            <fieldset className="fieldset mt-8">
-              <legend className="fieldset-legend">
-                User Email<span className="text-red-500">*</span>
-              </legend>
-              <input
-                placeholder="Enter your email"
-                name="userEmail"
-                type="text"
-                className="input w-full "
-                defaultValue={email}
-                required
-                // readOnly
-              />
-            </fieldset>
+                ))}
+              </ul>
+            )}
           </div>
-          <fieldset className="fieldset mt-8">
-            <legend className="fieldset-legend">Photo URL</legend>
-            <input
-              name="imageUrl"
-              type="url"
-              className="input w-full "
-              placeholder="Upload your photo somewhere and paste the URL here"
-            />
-          </fieldset>
+        </fieldset>
 
-          <div>
-            <button className="mt-4 btn w-full">
-              Create Group
-              <Lottie
-                animationData={groupIcon}
-                loop={true}
-                style={{ height: 32, width: 32 }}
-              />
-            </button>
-          </div>
-        </form>
+        {/* Description */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Description{" "}
+            <span className="font-light text-sm">(optional)</span>
+          </legend>
+          <input
+            name="description"
+            type="text"
+            className="input input-bordered w-full"
+            placeholder="Tell us something about your group"
+          />
+        </fieldset>
+
+        {/* Location */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Meeting Location <span className="text-error">*</span>
+          </legend>
+          <input
+            name="meetingLocation"
+            type="text"
+            className="input input-bordered w-full"
+            placeholder="Where do you want to meet?"
+            required
+          />
+        </fieldset>
+
+        {/* Max Members */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Max Members <span className="text-error">*</span>
+          </legend>
+          <input
+            name="maxMembers"
+            type="number"
+            className="input input-bordered w-full"
+            placeholder="Maximum number of members"
+            required
+          />
+        </fieldset>
+
+        {/* Start Date */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            Start Date <span className="text-error">*</span>
+          </legend>
+          <DatePicker
+            placeholderText="Select a start date"
+            name="startDate"
+            className="input input-bordered w-full"
+            dateFormat="yyyy-MM-dd"
+            selected={startingDate}
+            onChange={(date) => setStartingDate(date)}
+            required
+            minDate={new Date()}
+          />
+        </fieldset>
+
+        {/* User Info */}
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">User Name</legend>
+          <input
+            name="userName"
+            type="text"
+            className="input input-disabled w-full"
+            value={displayName}
+            readOnly
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend className="mb-2 font-semibold text-base-content">
+            User Email <span className="text-error">*</span>
+          </legend>
+          <input
+            name="userEmail"
+            type="text"
+            className="input input-bordered w-full"
+            defaultValue={email}
+            required
+          />
+        </fieldset>
       </div>
-    </div>
+
+      {/* Image URL */}
+      <fieldset className="mt-6">
+        <legend className="mb-2 font-semibold text-base-content">Photo URL</legend>
+        <input
+          name="imageUrl"
+          type="url"
+          className="input input-bordered w-full"
+          placeholder="Paste a public image URL"
+        />
+      </fieldset>
+
+      {/* Submit Button */}
+      <button className="mt-8 btn  w-full flex items-center justify-center gap-2">
+        Create Group
+        <Lottie
+          animationData={groupIcon}
+          loop
+          style={{ height: 32, width: 32 }}
+        />
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 };
 

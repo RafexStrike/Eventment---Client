@@ -127,8 +127,8 @@ const MyGroupUpdate = () => {
         <form onSubmit={handleFormSubmit} className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">
-                Event Name<span className="text-red-500">*</span>
+              <legend className="fieldset-legend ">
+                Event Name<span className="text-red-500 ">*</span>
               </legend>
               <input
                 name="eventTitle"
