@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 // Create a singleton axios instance outside the hook
 const axiosInstance = axios.create({
-  baseURL: "https://assignment-11-eventment-server.vercel.app",
+  baseURL: "https://assignment-11-server-side-public.onrender.com",
 });
 
 let interceptorsConfigured = false;

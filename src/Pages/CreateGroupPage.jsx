@@ -66,7 +66,7 @@ const CreateGroupPage = () => {
       isActive,
     };
 
-    // fetch("https://assignment-11-eventment-server.vercel.app/events/post", {
+    // fetch("https://assignment-11-server-side-public.onrender.com/events/post", {
     //   method: "POST",
     //   headers: { "Content-Type": "application/json" },
     //   body: JSON.stringify(createdGroupInfoObject),

@@ -14,8 +14,8 @@ const AllGroups = () => {
     const fetchEvents = async () => {
       const res = await fetch(
         filterType || searchText
-          ? `https://assignment-11-eventment-server.vercel.app/events/get?type=${filterType}&search=${searchText}`
-          : `https://assignment-11-eventment-server.vercel.app/events/get`
+          ? `https://assignment-11-server-side-public.onrender.com/events/get?type=${filterType}&search=${searchText}`
+          : `https://assignment-11-server-side-public.onrender.com/events/get`
       );
 
       const data = await res.json();
@@ -28,7 +28,7 @@ const AllGroups = () => {
   // useEffect(()=>{
   //   const fetchSearchedResults = async() =>{
   //     const res = await fetch(
-  //       searchText ? `https://assignment-11-eventment-server.vercel.app/events/get`
+  //       searchText ? `https://assignment-11-server-side-public.onrender.com/events/get`
   //     )
   //   }
   // })

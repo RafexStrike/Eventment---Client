@@ -11,7 +11,7 @@ const ShowMyJoinedGroups = () => {
   const { email } = user;
   const [myEvents, setMyEvents] = useState([]);
 
-  // fetch(`https://assignment-11-eventment-server.vercel.app/joinedEvent/${email}`)
+  // fetch(`https://assignment-11-server-side-public.onrender.com/joinedEvent/${email}`)
   //   .then((response) => {
   //     if (!response.ok) {
   //       throw new Error(`HTTP error! status: ${response.status}`);

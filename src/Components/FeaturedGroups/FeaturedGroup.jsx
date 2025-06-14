@@ -11,7 +11,7 @@ import GroupCard from "../Group/GroupCard";
 const FeaturedGroup = () => {
   const [allGroupsFetchedFromDB, setAllGroupsFetchedFromDB] = useState([]);
   useEffect(() => {
-    fetch("https://assignment-11-eventment-server.vercel.app/events/featured")
+    fetch("https://assignment-11-server-side-public.onrender.com/events/featured")
       .then((res) => res.json())
       .then((result) => {
         // console.log("presenting to you only the featured groups: ", result);
