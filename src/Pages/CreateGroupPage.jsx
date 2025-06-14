@@ -151,7 +151,7 @@ const CreateGroupPage = () => {
         </fieldset>
 
         {/* Event Type */}
-        <fieldset>
+        {/* <fieldset>
           <legend className="mb-2 font-semibold text-base-content">
             Event Type <span className="text-error">*</span>
           </legend>
@@ -189,7 +189,64 @@ const CreateGroupPage = () => {
               </ul>
             )}
           </div>
-        </fieldset>
+        </fieldset> */}
+
+        {/* Event type starts TEMP */}
+        <fieldset className="">
+              <legend className="fieldset-legend font-semibold">
+                Event Type<span className="text-red-500 font-semibold ">*</span>
+              </legend>
+              <div className="dropdown w-full  ">
+                <div
+                  onClick={() => {
+                    setIsTheDropDownOpen(!isTheDropDownOpen);
+                    // console.log(isTheDropDownOpen);
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  className=" w-full btn bg-none"
+                >
+                  {selectedHobby || "Select your hobby category"}
+                </div>
+
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-full p-2 shadow-sm"
+                >
+                  <li>
+                    <a onClick={() => handleCategorySelection("Cleanup")}>
+                      Cleanup
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleCategorySelection("Plantation")}>
+                      Plantation
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleCategorySelection("Donation")}>
+                      Donation
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleCategorySelection("Community Art")}>
+                      Community Art
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleCategorySelection("Education")}>
+                      Education
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleCategorySelection("Volunteering")}>
+                      Volunteering
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+        {/* Event type ends TEMP */}
 
         {/* Description */}
         <fieldset>

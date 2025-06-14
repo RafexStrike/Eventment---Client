@@ -3,6 +3,7 @@ import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import { Link } from "react-router";
 import useAxiosSecure from "../../JWT/Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import NoJoinedGroupsMessage from "./NoJoinedGroupsMessage";
 
 const ShowMyJoinedGroups = () => {
   const axiosSecure = useAxiosSecure();
@@ -49,66 +50,72 @@ const ShowMyJoinedGroups = () => {
         console.error("Error:", error);
       });
   }, [user, axiosSecure, email]);
-  return (
-    <div className="max-w-6xl mx-auto mt-10 mb-24  rounded-xl">
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>About</th>
-              <th>Event Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {myEvents.map((event, index) => (
+
+
+  if (!myEvents  || myEvents.length === 0) {
+    // return <div>sorry, no events that you joined moron</div>;
+    return <NoJoinedGroupsMessage></NoJoinedGroupsMessage>
+  } else {
+    return (
+      <div className="max-w-6xl mx-auto mt-10 mb-24  rounded-xl">
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
               <tr>
-                <th>
-                  <label>{index + 1}</label>
-                </th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={event.imageUrl}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{event.eventTitle}</div>
-                      <div className="text-sm opacity-50">
-                        {event.eventType}
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {event.description}
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    {event.eventType}
-                  </span>
-                </td>
-                <td>{event.startDate}</td>
-                <th>
-                  <Link
-                    to={`/groups/get/${event.groupID}`}
-                    className="btn btn-primary btn-xs"
-                  >
-                    View Group
-                  </Link>
-                </th>
+                <th></th>
+                <th>Name</th>
+                <th>About</th>
+                <th>Event Date</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-          {/* foot */}
-          {/* <tfoot>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {myEvents.map((event, index) => (
+                <tr>
+                  <th>
+                    <label>{index + 1}</label>
+                  </th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src={event.imageUrl}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">{event.eventTitle}</div>
+                        <div className="text-sm opacity-50">
+                          {event.eventType}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    {event.description}
+                    <br />
+                    <span className="badge badge-ghost badge-sm">
+                      {event.eventType}
+                    </span>
+                  </td>
+                  <td>{event.startDate}</td>
+                  <th>
+                    <Link
+                      to={`/groups/get/${event.groupID}`}
+                      className="btn btn-primary btn-xs"
+                    >
+                      View Group
+                    </Link>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+            {/* foot */}
+            {/* <tfoot>
             <tr>
               <th></th>
               <th>Name</th>
@@ -117,10 +124,11 @@ const ShowMyJoinedGroups = () => {
               <th></th>
             </tr>
           </tfoot> */}
-        </table>
+          </table>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ShowMyJoinedGroups;

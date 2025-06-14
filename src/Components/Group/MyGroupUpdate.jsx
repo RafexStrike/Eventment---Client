@@ -87,7 +87,10 @@ const MyGroupUpdate = () => {
     // })
     //   .then((response) => response.json())
     axiosSecure
-      .put(`/myEvent/put/${groupData._id}?email=${email}`, updatedGroupInfoObject)
+      .put(
+        `/myEvent/put/${groupData._id}?email=${email}`,
+        updatedGroupInfoObject
+      )
       .then((res) => {
         const result = res.data;
 
@@ -143,7 +146,6 @@ const MyGroupUpdate = () => {
               <legend className="fieldset-legend">
                 Event Type<span className="text-red-500">*</span>
               </legend>
-
               <div className="dropdown  ">
                 <div
                   onClick={() => {
