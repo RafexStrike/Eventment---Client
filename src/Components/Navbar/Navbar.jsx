@@ -11,7 +11,7 @@ import LottieReact from "../LottieReact/LottieReact";
 const Navbar = () => {
   const defaultProfilePic = "https://i.ibb.co/1dSwFqY/default-avatar.png";
   const { user, isLoadingDone, bidayPrithibi } = useContext(AuthContext);
-  console.log("user from the navbar", user);
+  // console.log("user from the navbar", user);
   const handleLogOut = () => {
     bidayPrithibi()
       .then(() => {

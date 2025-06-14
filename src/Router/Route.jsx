@@ -41,13 +41,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/groups",
-        // loader: () => fetch("http://localhost:3000/events/get"),
+        // loader: () => fetch("https://assignment-11-eventment-server.vercel.app/events/get"),
         element: <AllGroups></AllGroups>,
       },
       {
         path: "/groups/get/:groupID",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/events/get/${params.groupID}`),
+          fetch(`https://assignment-11-eventment-server.vercel.app/events/get/${params.groupID}`),
         element: (
           <PrivateRoute>
             <GroupDetails></GroupDetails>
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myGroups/get",
-        // loader: () => fetch(`http://localhost:3000/events/get`),
+        // loader: () => fetch(`https://assignment-11-eventment-server.vercel.app/events/get`),
         element: (
           <Suspense
             fallback={
@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
       {
         path: "/myGroups/update/:groupID",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/events/get/${params.groupID}`),
+          fetch(`https://assignment-11-eventment-server.vercel.app/events/get/${params.groupID}`),
         element: (
           <PrivateRoute>
             <MyGroupUpdate />

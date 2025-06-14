@@ -80,7 +80,7 @@ const MyGroupUpdate = () => {
       email,
     };
 
-    // fetch(`http://localhost:3000/myEvent/put/${groupData._id}?email=${email}`, {
+    // fetch(`https://assignment-11-eventment-server.vercel.app/myEvent/put/${groupData._id}?email=${email}`, {
     //   method: "PUT",
     //   headers: { "content-type": "application/json" },
     //   body: JSON.stringify(updatedGroupInfoObject),

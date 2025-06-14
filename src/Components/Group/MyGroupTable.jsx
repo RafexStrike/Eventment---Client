@@ -35,7 +35,7 @@ const MyGroupTable = ({ oneGroupData, initialGroups, setInitialGroups }) => {
       if (result.isConfirmed) {
         setIsDeleting(true);
 
-        // fetch(`http://localhost:3000/myEvent/delete/${_id}`, {
+        // fetch(`https://assignment-11-eventment-server.vercel.app/myEvent/delete/${_id}`, {
         //   method: "DELETE",
         // })
         axiosSecure

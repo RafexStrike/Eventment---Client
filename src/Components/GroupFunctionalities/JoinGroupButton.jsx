@@ -20,7 +20,7 @@ const JoinGroupButton = ({ groupDetails }) => {
   };
   const handleJoinGroupButton = () => {
     // console.log(email);
-    // fetch("http://localhost:3000/joinedEvent", {
+    // fetch("https://assignment-11-eventment-server.vercel.app/joinedEvent", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
