@@ -1,68 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  
-//   useEffect(() => {
-//     AOS.init({
-//       duration: 1000,
-//       once: true,
-//     });
-//   }, []);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-const [isLoaded, setIsLoaded] = useState(false);
-useEffect(() => {
-  if (typeof window !== "undefined") {
-    const elements = document.querySelectorAll("[data-aos]");
-    elements.forEach((element) => {
-      element.removeAttribute("data-aos-delay");
-      element.removeAttribute("data-aos-duration");
-      element.setAttribute("data-aos-once", "false");
-    });
-  }
-
-  AOS.init({
-    startEvent: "load",
-    once: false,
-    duration: 1000,
-    offset: 50,
-    delay: 0,
-    mirror: true,
-    anchorPlacement: "top-bottom",
-    disable: false,
-    useClassNames: true,
-    disableMutationObserver: false,
-    debounceDelay: 50,
-    throttleDelay: 99,
-  });
-
-  const timer = setTimeout(() => {
-    setIsLoaded(true);
-    AOS.refresh();
-  }, 100);
-
-  const handleScroll = () => {
-    if (isLoaded) {
-      AOS.refresh();
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    clearTimeout(timer);
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, [isLoaded]);
-
-useEffect(() => {
-  if (isLoaded ) {
-    AOS.refresh();
-  }
-}, [selectedImage, isLoaded]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const images = [
     {
@@ -106,43 +55,34 @@ useEffect(() => {
   return (
     <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title and Description */}
-        {/* <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Explore Our <span className="text-primary">Vibrant Gallery</span>
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover the magic of community events through our curated collection of moments. 
-            From tech meetups to cultural festivals, each image tells a unique story of connection and celebration.
-          </p>
-        </div> */}
-      <div className="text-center mb-16">
-        <div
-          className={`transition-opacity duration-500 ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <h2
-            data-aos="fade-right"
-            className="text-4xl lg:text-5xl font-bold mb-4 text-primary"
+        <div className="text-center mb-16">
+          <div
+            className={`transition-opacity duration-500 ${
+              isLoaded ? "opacity-100" : "opacity-0"
+            }`}
           >
-            Community Impact Gallery
-          </h2>
-          <p
-            data-aos="fade-left"
-            data-aos-delay="100"
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
-          >
-            Witness the power of collective action! Explore our gallery showcasing impactful community events, 
-            from environmental cleanups to educational workshops, each image capturing moments of positive change 
-            and community engagement.
-          </p>
+            <h2
+              data-aos="fade-right"
+              className="text-4xl lg:text-5xl font-bold mb-4 text-primary"
+            >
+              Community Impact Gallery
+            </h2>
+            <p
+              data-aos="fade-left"
+              data-aos-delay="100"
+              className="text-lg text-gray-600 max-w-2xl mx-auto"
+            >
+              Witness the power of collective action! Explore our gallery showcasing impactful community events, 
+              from environmental cleanups to educational workshops, each image capturing moments of positive change 
+              and community engagement.
+            </p>
+          </div>
         </div>
-      </div>
+      
         {/* Main Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {images.map((image, index) => (
-            <motion.div
+            <div
               key={image.id}
               className="relative group cursor-pointer"
               data-aos="fade-up"
@@ -164,57 +104,44 @@ useEffect(() => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Modal for selected image */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedImage(null)}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <div
+              className="relative max-w-5xl w-full rounded-2xl overflow-hidden shadow-2xl"
             >
-              <motion.div
-                className="relative max-w-5xl w-full rounded-2xl overflow-hidden shadow-2xl"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="w-full h-full object-contain"
-                />
-                
-                {/* Image Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{selectedImage.alt}</h3>
-                  <span className="inline-block px-4 py-2 bg-primary/80 text-white text-sm rounded-full">
-                    {selectedImage.category}
-                  </span>
-                </div>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="w-full h-full object-contain"
+              />
+              
+              {/* Image Info */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">{selectedImage.alt}</h3>
+                <span className="inline-block px-4 py-2 bg-primary/80 text-white text-sm rounded-full">
+                  {selectedImage.category}
+                </span>
+              </div>
 
-                {/* Close button */}
-                <motion.button
-                  className="absolute top-4 right-4 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setSelectedImage(null)}
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {/* Close button */}
+              <button
+                className="absolute top-4 right-4 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                onClick={() => setSelectedImage(null)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

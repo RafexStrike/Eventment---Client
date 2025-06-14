@@ -10,6 +10,8 @@ import GroupCard from "../Group/GroupCard";
 
 const FeaturedGroup = () => {
   const [allGroupsFetchedFromDB, setAllGroupsFetchedFromDB] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     fetch("https://assignment-11-server-side-public.onrender.com/events/featured")
       .then((res) => res.json())
@@ -20,56 +22,13 @@ const FeaturedGroup = () => {
       .catch(error => console.log("error after calling the api", error))
   }, []);
 
-  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const elements = document.querySelectorAll("[data-aos]");
-      elements.forEach((element) => {
-        element.removeAttribute("data-aos-delay");
-        element.removeAttribute("data-aos-duration");
-        element.setAttribute("data-aos-once", "false");
-      });
-    }
-
-    AOS.init({
-      startEvent: "load",
-      once: false,
-      duration: 1000,
-      offset: 50,
-      delay: 0,
-      mirror: true,
-      anchorPlacement: "top-bottom",
-      disable: false,
-      useClassNames: true,
-      disableMutationObserver: false,
-      debounceDelay: 50,
-      throttleDelay: 99,
-    });
-
     const timer = setTimeout(() => {
       setIsLoaded(true);
-      AOS.refresh();
     }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const handleScroll = () => {
-      if (isLoaded) {
-        AOS.refresh();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded && allGroupsFetchedFromDB.length > 0) {
-      AOS.refresh();
-    }
-  }, [allGroupsFetchedFromDB, isLoaded]);
   return (
     <div className="mt-36 mb-12">
       {/* <DynamicPageTitle title="Upcoming Events" /> */}

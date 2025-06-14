@@ -8,13 +8,8 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 const SuccessStories = () => {
-  useEffect(() => {
-    AOS.init({ once: false, duration: 800 });
-    AOS.refresh();
-  }, []);
   const testimonials = [
     {
       name: "Mahbububa Nasrin",
