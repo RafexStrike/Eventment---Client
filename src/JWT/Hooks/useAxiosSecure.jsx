@@ -1,51 +1,72 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Authentication/AuthContext";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
+// Create a singleton axios instance outside the hook
 const axiosInstance = axios.create({
   baseURL: "https://assignment-11-eventment-server.vercel.app",
 });
+
+let interceptorsConfigured = false;
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { user, bidayPrithibi } = useContext(AuthContext);
 
-  axiosInstance.interceptors.request.use(async (config) => {
-    if (user) {
-      const token = await user.getIdToken();
-      config.headers.authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
+  useEffect(() => {
+    // Only configure interceptors once
+    if (!interceptorsConfigured) {
+      interceptorsConfigured = true;
 
-  // response interceptor
-  axiosInstance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-      //   if (error.status === 401 || error.status === 403)
-      if (error.response?.status === 401 || error.response?.status === 403) {
-        bidayPrithibi()
-          .then(() => {
-            console.log(
-              "the user has been signed out bacause of 401 or 403 status code."
-            );
-            Swal.fire({
-              icon: "error",
-              title: "Oops..!",
-              text: "You have been signed out bacause of 401 or 403 status code.",
-            });
-            navigate("/login");
-          })
-          .catch((error) => {
-            console.log("error from interceptor", error);
-          });
-      }
-      console.log("error from interceptor", error.response);
-      return Promise.reject(error);
+      // Request interceptor
+      axiosInstance.interceptors.request.use(
+        async (config) => {
+          if (user) {
+            const token = await user.getIdToken();
+            config.headers.authorization = `Bearer ${token}`;
+          }
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+
+      // Response interceptor
+      axiosInstance.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+          const status = error.response?.status;
+          
+          // Only handle auth errors (401/403)
+          if (status === 401 || status === 403) {
+            try {
+              await bidayPrithibi();
+              console.log("User signed out due to auth error");
+              
+              Swal.fire({
+                icon: "error",
+                title: "Session Expired",
+                text: "Please log in again.",
+                showConfirmButton: true,
+              }).then(() => {
+                navigate("/login");
+              });
+            } catch (signOutError) {
+              console.log("Error during sign out:", signOutError);
+            }
+          } else {
+            // For other errors (404, 500, etc.), just log and reject
+            console.log("Request failed with status:", status, error.message);
+          }
+          
+          return Promise.reject(error);
+        }
+      );
     }
-  );
+  }, [user, navigate, bidayPrithibi]);
 
   return axiosInstance;
 };
