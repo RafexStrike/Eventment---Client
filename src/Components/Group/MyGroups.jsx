@@ -90,15 +90,15 @@ const MyGroups = () => {
               </svg>
             </div>
             <h2 className="card-title text-2xl mb-2 justify-center">
-              No Groups Created Yet
+              No Events Created Yet
             </h2>
             <p className="text-base-content/70 mb-4">
-              You haven't created any groups yet. Start building your community
-              by creating your first group!
+              You haven't created any events yet. Start building your community
+              by creating your first events!
             </p>
             <div className="card-actions justify-center">
               <Link to={`/createGroup`} className="btn btn-primary">
-                Create Your First Group
+                Create Your First Event
               </Link>
             </div>
           </div>

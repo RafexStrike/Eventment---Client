@@ -21,7 +21,7 @@ const SwiperTest = () => {
     {
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Panam_City_04.jpg/1200px-Panam_City_04.jpg",
       title: "Ancient Vibes",
-      description: "Discover the magic of Old Vibes of Dhaka in a gang!"
+      description: "Discover the magic of Old Vibes of Dhaka in events!"
     },
     {
       image: "https://i.postimg.cc/KY4VCkwP/image-6.jpg",

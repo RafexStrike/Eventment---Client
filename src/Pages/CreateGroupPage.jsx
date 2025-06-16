@@ -127,9 +127,9 @@ const CreateGroupPage = () => {
   return (
     <div className="px-4 md:px-0 max-w-6xl mx-auto mt-20 mb-28">
   <div className="text-center">
-    <h1 className="my-4 text-4xl font-bold text-primary">Create a new group</h1>
+    <h1 className="my-4 text-4xl font-bold text-primary">Create a new event</h1>
     <p className="mb-6 text-base max-w-3xl mx-auto text-base-content">
-      Bring people together around your passion. Fill out the form below to start a new hobby group, share your interests, and meet like-minded members.
+      Bring people together around your passion. Fill out the form below to start a new event, share your interests, and meet like-minded members!
     </p>
   </div>
 

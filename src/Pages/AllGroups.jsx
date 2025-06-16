@@ -4,10 +4,8 @@ import GroupCard from "../Components/Group/GroupCard";
 import { motion } from "framer-motion";
 
 const AllGroups = () => {
-  
   const [allGroupsFetchedFromDB, setAllEventsFetchedFromDB] = useState([]);
 
-  
   const [filterType, setFilterType] = useState("");
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
@@ -24,7 +22,6 @@ const AllGroups = () => {
     fetchEvents();
   }, [filterType, searchText]);
 
- 
   // useEffect(()=>{
   //   const fetchSearchedResults = async() =>{
   //     const res = await fetch(
@@ -34,7 +31,7 @@ const AllGroups = () => {
   // })
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -42,9 +39,12 @@ const AllGroups = () => {
     >
       {/* Header Section */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary mb-4">Discover Events</h1>
+        <h1 className="text-4xl font-bold text-primary mb-4">
+          Discover Events
+        </h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Find and join events that match your interests. Connect with like-minded people and make a difference together.
+          Find and join events that match your interests. Connect with
+          like-minded people and make a difference together.
         </p>
       </div>
 
@@ -80,7 +80,7 @@ const AllGroups = () => {
 
         {/* Filter Dropdown */}
         <div className="w-full md:w-1/3">
-          <select 
+          <select
             className="select select-bordered w-full bg-base-100"
             onChange={(e) => setFilterType(e.target.value)}
           >
@@ -110,8 +110,18 @@ const AllGroups = () => {
       {allGroupsFetchedFromDB.length === 0 && (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">No Groups Found</h3>
-          <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+          <h3 className="text-xl font-semibold text-gray-700 mb-2">
+            No Groups Found
+          </h3>
+          <p className="text-gray-500">
+            Try adjusting your search or filter criteria
+          </p>
+          {/* Info Note for First-Time Users */}
+          <div className="mt-4 text-sm text-center text-warning bg-base-200 p-3 rounded-md mb-8">
+            <strong>Note:</strong> If you're visiting this section for the first
+            time and don't see any events, please try reloading the page. It may
+            take a few moments for the backend server to wake up.
+          </div>
         </div>
       )}
     </motion.div>
