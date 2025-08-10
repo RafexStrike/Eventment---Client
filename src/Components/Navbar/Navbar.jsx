@@ -51,7 +51,7 @@ const Navbar = () => {
 
       <NavLink className={`nav-link ${!user ? "hidden" : ""}`} to="/createGroup">Create Event</NavLink>
             <NavLink className={`nav-link ${!user ? "hidden" : ""}`} to="/myGroups/get">Manage Events</NavLink>
-
+ <NavLink className={`nav-link ${!user ? "hidden" : ""}`} to="/myJoinedEvents">Joined Events</NavLink>
 
       {/* <NavLink className="nav-link " to="/myGroups/get">
         My Events
