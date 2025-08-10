@@ -11,7 +11,8 @@ import MyGroups from "../Components/Group/MyGroups";
 import MyGroupUpdate from "../Components/Group/MyGroupUpdate";
 import { Suspense } from "react";
 import ErrorPage from "../Pages/ErrorPage";
-import ShowMyJoinedGroups from "../Components/GroupFunctionalities/showMyJoinedGroups";
+// import ShowMyJoinedGroups from "../Components/GroupFunctionalities/showMyJoinedGroups";
+import ShowMyJoinedGroups from "../Components/GroupFunctionalities/ShowMyJoinedGroups";
 
 export const router = createBrowserRouter([
   {

@@ -48,6 +48,13 @@ const Navbar = () => {
       <NavLink className="nav-link " to="/groups">
         Upcoming Events
       </NavLink>
+
+      <NavLink to="/createGroup">Create Event</NavLink>
+
+      <NavLink to="/myGroups/get">Manage Events</NavLink>
+
+      <NavLink to="/myJoinedEvents">Joined Events</NavLink>
+
       {/* <NavLink className="nav-link " to="/myGroups/get">
         My Events
       </NavLink>
