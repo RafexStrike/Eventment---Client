@@ -19,8 +19,9 @@ const MainLayout = () => {
 
     return (
         <div>
-            <div className='max-w-6xl mx-auto mt-4'><Navbar/></div>
-            <div>
+            {/* Navbar now handles its own full-width background and content alignment */}
+            <Navbar/>
+            <div className='max-w-6xl mx-auto mt-4'>
                 <Outlet/>
             </div>
             <Footer/>
